@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Bookstore.Web.Configuration;
 
 namespace Bookstore.Web
 {
@@ -17,13 +18,13 @@ namespace Bookstore.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            LoggingSetup.ConfigureLogging();
+            LoggingSetup.ConfigureLogging(Configuration);
 
-            ConfigurationSetup.ConfigureConfiguration();
+            ConfigurationSetup.ConfigureConfiguration(Configuration);
 
-            DependencyInjectionSetup.ConfigureDependencyInjection(services);
+            DependencyInjectionSetup.ConfigureDependencyInjection(services, Configuration);
 
-            AuthenticationConfig.ConfigureAuthentication(services);
+            AuthenticationConfig.ConfigureAuthentication(services, Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
