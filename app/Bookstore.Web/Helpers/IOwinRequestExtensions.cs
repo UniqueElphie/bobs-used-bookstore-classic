@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Owin;
+
 
 namespace Bookstore.Web.Helpers
 {
-    public static class HttpContextExtensions
+    public static class OwinRequestExtensions
     {
-        public static string GetReturnUrl(this IHttpContextAccessor httpContextAccessor)
+        public static string GetReturnUrl(this IOwinRequest request)
         {
-            var request = httpContextAccessor.HttpContext.Request;
             return $"{request.Scheme}://{request.Host}/signin-oidc";
         }
     }
