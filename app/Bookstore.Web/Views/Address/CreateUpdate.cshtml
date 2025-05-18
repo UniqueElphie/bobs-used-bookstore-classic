@@ -1,4 +1,4 @@
-﻿@model Bookstore.Web.ViewModel.Address.AddressCreateUpdateViewModel
+@model Bookstore.Web.ViewModel.Address.AddressCreateUpdateViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,7 +10,7 @@
 
     @using (Html.BeginForm())
     {
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             <label asp-for="AddressLine1">Address Line 1</label>
@@ -54,7 +54,5 @@
 </div>
 
 @section Scripts {
-    @{
-        Html.RenderPartial("_ValidationScriptsPartial");
-    }
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
